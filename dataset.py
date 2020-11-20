@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import h5py
+import random
 
 
 class Dataset(torch.utils.data.IterableDataset):
@@ -10,10 +11,6 @@ class Dataset(torch.utils.data.IterableDataset):
         self.meas_files = meas_files
         self.train = train
         self.steps = steps
-
-        if device is None:
-            device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.device = device
 
         assert len(self.img_files) == len(self.meas_files), f"{len(img_files)} imgs, {len(meas_files)} meas"
 
@@ -28,13 +25,17 @@ class Dataset(torch.utils.data.IterableDataset):
         while step < self.steps:
 
             if imgno >= data_len:
-                if fileno >= len(self.img_files):
+                if fileno >= len(self.img_files)-1:
                     random_file_indices = torch.randperm(len(self.img_files)).numpy()
                     fileno = 0
                 else:
                     fileno += 1
-
-                file_idx = random_file_indices[fileno]
+                
+                try:
+                    file_idx = random_file_indices[fileno]
+                except:
+                    file_idx = random.choice(random_file_indices)
+                    
 
                 with h5py.File(self.img_files[file_idx], 'r') as f:
                     for key in f.keys():  # each h5 file is one image, there is only 1 key
