@@ -31,12 +31,18 @@ A variational autoencoder with morphological profiling for fluorescence images o
 
 ## Results
 ### Reconstructions
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/rec.png">
+
 ### Generated
 Generated images created by sampling from normal distribution N(0, 1) of same dim as latent and passing to values to decoder
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/gen.png">
+
 ### Morphological feature prediction
 Covariance of ground truth measurements
 
-covarianve of predicted measurements
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/pred_cov.png">
+
+Link to list of measurements
 
 per-measurement mean absolute error predicted
 
@@ -45,13 +51,15 @@ per-measurement mean absolute error generated
 ### Latent space
 based on mu-values output from encoder on single images
 
-
 #### Principle Component Analysis
-<img>
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/pca_plot.png">
+
 Explained variance: PC1: 8.28253536, PC2: 5.38001632
-<img>
+
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/pca_gen.png">
 
 #### U-MAP of embeddings
+<img src="https://raw.githubusercontent.com/RodMcN/CP-VAE/master/imgs/umap.png">
 
 
 #### Probability distributions in latent space
