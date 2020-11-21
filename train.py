@@ -40,7 +40,7 @@ if __name__ == "__main__":
         block = ResBlock
 
 
-    model = VAE(Encoder(latent_dims=args.dims), Decoder(latent_dims=args.dims, num_featues=672))
+    model = VAE(Encoder(latent_dims=args.dims, block=block), Decoder(latent_dims=args.dims, block=block, num_featues=672))
     if args.weights:
         model.load_state_dict(torch.load(args.weights))
     model.to(device)
